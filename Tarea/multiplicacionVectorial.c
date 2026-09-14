@@ -32,7 +32,7 @@ int main(){
     // Ejemplo 2
     V8A_1.Num2[0] = 0xFFFFFFFFFFFFAAAAULL;
     V8A_1.Num2[1] = 0xFFFFFFFFFFFFBBBBULL;
-    // Mas ejemplos
+    // Otro numeros de 64 bits
     // 1 : 0x1111222233334444ULL
     // 2 : 0x5555666677778888ULL
     printf("El nùmero A de 128 bits es: %016llX %016llX \n", V8A_1.Num2[0], V8A_1.Num2[1]);
@@ -44,20 +44,17 @@ int main(){
     printf("Parte alta (Num2[1]) en Hex: %016llX (Decimal: %llu)\n", V8A_1.Num2[1], V8A_1.Num2[1]);
     printf("Parte baja (Num2[0]) en Hex: %016llX (Decimal: %llu)\n", V8A_1.Num2[0], V8A_1.Num2[0]);
     
-    printf("\nEl número A de 128 bits completo en memoria es:\n");
+    printf("\nEl número A de 128 bits completo es:\n");
     printf("0x%016llX %016llX\n", V8A_1.Num2[1], V8A_1.Num2[0]);
     printf("--------------------------------\n");
-
-    //printf("Tamaño de la variable: %zu", V8A_1.Num2[0]);
-
 
     V8B_2.Num2[0] = 0xFFFFFFFFFFFFFFFFULL;
     V8B_2.Num2[1] = 0xFFFFFFFFFFFFFFFFULL;
 
     printf("El nùmero B de 128 bits es: %016llX %016llX \n", V8B_2.Num2[0], V8B_2.Num2[1]);
 
-    //V8B_2.Num2[0] = 0x309ULL; //777;
-    //V8B_2.Num2[1] = 0x311ULL; //785;
+    //V8B_2.Num2[0] = 0x309ULL;
+    //V8B_2.Num2[1] = 0x311ULL; 
     // mas ejemplos
     // 1: 0xDEADC0DECAFEBABEULL
     // 2: 0xBEEFFACEFEEDC0DEULL
@@ -68,7 +65,7 @@ int main(){
     printf("Parte alta (Num2[1]) en Hex: %016llX (Decimal: %llu)\n", V8B_2.Num2[1], V8B_2.Num2[1]);
     printf("Parte baja (Num2[0]) en Hex: %016llX (Decimal: %llu)\n", V8B_2.Num2[0], V8B_2.Num2[0]);
     
-    printf("\nEl número A de 128 bits completo en memoria es:\n");
+    printf("\nEl número A de 128 bits completo es:\n");
     printf("0x%016llX %016llX\n", V8B_2.Num2[1], V8B_2.Num2[0]);
     printf("--------------------------------\n");
 
@@ -96,23 +93,18 @@ int main(){
     carry1 = _addcarry_u64(0,resultado2,resultado_bajo, &resultado2);
     _addcarry_u64(carry1, resultado3, resultado_alto, &resultado3);
 
-    //union Vector2int Resultado_Bajo;
-    //union Vector2int Resultado_Alto;
+
+    V8AB_RBa.Num = _mm_set_epi64x(resultado1, resultado0); 
+    V8AB_RAl.Num = _mm_set_epi64x(resultado3, resultado2);
 
 
-    V8AB_RBa.Num = _mm_set_epi64x(resultado1, resultado0); // Bits 0 a 127
-    V8AB_RAl.Num = _mm_set_epi64x(resultado3, resultado2); // Bits 128 a 255
-
-
-    // Imprimir para verificar precisión matemática exacta
-    printf("MULTIPLICACIÓN COMPLETA DE 256 BITS:\n");
+    printf("Multiplicacion:\n");
     printf("Resultado Alto (128 bits superiores): %016llX %016llX\n", 
             (unsigned long long)V8AB_RAl.Num2[1], (unsigned long long)V8AB_RAl.Num2[0]);
     printf("Resultado Bajo (128 bits inferiores):  %016llX %016llX\n", 
             (unsigned long long)V8AB_RBa.Num2[1], (unsigned long long)V8AB_RBa.Num2[0]);
 
     printf("El resultado es :  %016llX %016llX %016llX %016llX \n", (unsigned long long)V8AB_RAl.Num2[1], (unsigned long long)V8AB_RAl.Num2[0],(unsigned long long)V8AB_RBa.Num2[1], (unsigned long long)V8AB_RBa.Num2[0]);
-    //printf("Tamaño de la variable: %zu", Resultado_Alto.Num2[1]);
 
 
     return 0;

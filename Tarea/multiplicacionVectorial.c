@@ -45,7 +45,7 @@ int main(){
     printf("Parte baja (Num2[0]) en Hex: %016llX (Decimal: %llu)\n", V8A_1.Num2[0], V8A_1.Num2[0]);
     
     printf("\nEl número A de 128 bits completo es:\n");
-    printf("0x%016llX %016llX\n", V8A_1.Num2[1], V8A_1.Num2[0]);
+    printf("%016llX %016llX\n", V8A_1.Num2[1], V8A_1.Num2[0]);
     printf("--------------------------------\n");
 
     V8B_2.Num2[0] = 0xFFFFFFFFFFFFFFFFULL;
@@ -66,7 +66,7 @@ int main(){
     printf("Parte baja (Num2[0]) en Hex: %016llX (Decimal: %llu)\n", V8B_2.Num2[0], V8B_2.Num2[0]);
     
     printf("\nEl número A de 128 bits completo es:\n");
-    printf("0x%016llX %016llX\n", V8B_2.Num2[1], V8B_2.Num2[0]);
+    printf("%016llX %016llX\n", V8B_2.Num2[1], V8B_2.Num2[0]);
     printf("--------------------------------\n");
 
     // PARTE BAJA DE A POR LA PARTE BAJA DE B
@@ -99,9 +99,9 @@ int main(){
 
 
     printf("Multiplicacion:\n");
-    printf("Resultado Alto (128 bits superiores): %016llX %016llX\n", 
+    printf("Resultado Alto: %016llX %016llX\n", 
             (unsigned long long)V8AB_RAl.Num2[1], (unsigned long long)V8AB_RAl.Num2[0]);
-    printf("Resultado Bajo (128 bits inferiores):  %016llX %016llX\n", 
+    printf("Resultado Bajo:  %016llX %016llX\n", 
             (unsigned long long)V8AB_RBa.Num2[1], (unsigned long long)V8AB_RBa.Num2[0]);
 
     printf("El resultado es :  %016llX %016llX %016llX %016llX \n", (unsigned long long)V8AB_RAl.Num2[1], (unsigned long long)V8AB_RAl.Num2[0],(unsigned long long)V8AB_RBa.Num2[1], (unsigned long long)V8AB_RBa.Num2[0]);

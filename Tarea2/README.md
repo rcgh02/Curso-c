@@ -1,5 +1,5 @@
 # Tarea 2 
-# Implementar en c con listas ligadas la estructura LIFO Y FIFO.
+# Implementar en c las estructuras LIFO Y FIFO con listas ligadas.
 
 <!--
 Source - https://stackoverflow.com/a/38274615

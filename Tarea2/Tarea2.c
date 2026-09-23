@@ -103,7 +103,6 @@ int remove_by_index(node_t ** head, int n){ // este doble
 }
 
 int main() {
-    //node_t * head = NULL;
     node_t * pila = NULL;
 
     printf("Prueba LIFO (Último en entrar primero en salir.) \n");

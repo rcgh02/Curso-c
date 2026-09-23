@@ -15,15 +15,22 @@ void print_list(node_t * head){
     }
 }
 
-void push(node_t * head, int val){
-    node_t * current = head;
+void push(node_t ** head, int val){
+    node_t * new_node = (node_t *) malloc(sizeof(node_t));
+    new_node->val = val;
+    new_node->next = NULL;
+
+    if (*head == NULL) {
+        *head = new_node;
+        return;
+    };
+    
+    node_t * current = *head;
     while (current->next != NULL)
     {   
         current = current->next;
     }
-    current->next = (node_t *) malloc(sizeof(node_t));
-    current->next->val = val;
-    current->next->next = NULL;
+    current->next = new_node;
 }
 
 // Agregando el primer nodo al principio de la lista
@@ -41,7 +48,7 @@ int pop_f(node_t ** head){
     int retval = -1; 
     node_t * next_nodo = NULL; // creamos un nodo con valor null
 
-    if(*head== NULL){
+    if(head == NULL || *head== NULL){
         return -1;
     }
 
@@ -54,29 +61,7 @@ int pop_f(node_t ** head){
     return retval;
 }
 
-// Eliminar ultimo elemento de la lista
-int remove_last(node_t * head){
-    int retval = 0;
-    if(head->next == NULL){
-        retval = head->val;
-        free(head);
-        return retval;
-    }
-
-    node_t * current = head;
-
-    while(current->next->next !=NULL){
-        current = current->next;
-    }
-
-    retval = current->next->val;
-    free(current->next);
-    current->next = NULL;
-    return retval;
-}
-
 // Eliminar elemento respecto al indice
-
 int remove_by_index(node_t ** head, int n){ // este doble
     // puntero es para poder modifcar el valor del puntero
     int i = 0;
@@ -118,8 +103,7 @@ int remove_by_index(node_t ** head, int n){ // este doble
 }
 
 int main() {
-
-    node_t * head = NULL;
+    //node_t * head = NULL;
     node_t * pila = NULL;
 
     printf("Prueba LIFO (Último en entrar primero en salir.) \n");
@@ -143,15 +127,11 @@ int main() {
     print_list(pila);
 
     printf("Prueba FIFO (Primero en entrar primero en salir.)\n");
-    node_t * cola = (node_t *) malloc(sizeof(node_t));
-    if(cola == NULL){
-        return 1;
-   }
-    cola->val = 100;
-    cola->next = NULL;
+    node_t * cola = NULL;
 
-    push(cola,200);
-    push(cola,300);
+
+    push(&cola,200);
+    push(&cola,300);
 
     printf("Contenido cola, primero en entrar fue 100,200 y 300\n");
     print_list(cola);

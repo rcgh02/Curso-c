@@ -2,16 +2,14 @@
 
 ## Método de horner
 
-# Método de horner utilizando el método tradicional
+## Método de horner utilizando el método tradicional
 
-# Método de horner utilizando funciones y tipos de datos  intrinsec
+## Método de horner utilizando funciones y tipos de datos  intrinsec
 
-Utilizando tipo de datos utilizados 
+Utilizando tipo de datos:
 
 Double
-
-### __m256d
+ __m256d
 
 Float
-
-### __m256
+ __m256

@@ -21,7 +21,7 @@ Se utilizan las funciones
 Float
  __m256
 
-8 valores de 64 bits
+8 valores de 32 bits
 
 Se utilizan las funciones 
 * _mm256_mul_ps

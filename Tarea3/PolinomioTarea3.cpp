@@ -34,26 +34,19 @@ double horner_intrinsic(double X,double *coef, long size){
     double *R,P;
     int i;
     __m256 *ymm0,X256,Y;
-    //__m256d *ymm0,X256,Y;
 
     ymm0 = (__m256*)coef;
-    //ymm0 = (__m256d*)coef;
 
     X256 = _mm256_set1_ps(X*X*X*X);
-    //X256 = _mm256_set1_pd(X*X*X*X);
 
     Y = _mm256_set1_ps(0.0);
-    //Y = _mm256_set1_pd(0.0);
 
     for(i=0;i<size/4-1;i++){
         Y = _mm256_add_ps(Y,ymm0[i]);
         Y = _mm256_mul_ps(Y,X256);
-        //Y = _mm256_add_pd(Y,ymm0[i]);
-        //Y = _mm256_mul_pd(Y,X256);
     }
 
     Y = _mm256_add_ps(Y,ymm0[i]);
-    //Y = _mm256_add_pd(Y,ymm0[i]);
 
     R = (double *)(&Y);
 

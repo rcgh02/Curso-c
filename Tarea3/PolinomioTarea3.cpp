@@ -21,8 +21,8 @@ static inline bench_t cycles(void){
 }
 
 
-double horner(double X, double *coef, long size){
-    double ACC =0.0;
+float horner(float X, float *coef, long size){
+    float ACC =0.0;
     int i;
     for (i=0;i<size;i++){
         ACC = (ACC+coef[i])*X;
@@ -30,60 +30,64 @@ double horner(double X, double *coef, long size){
     return ACC;
 }
 
-double horner_intrinsic(double X,double *coef, long size){
-    double *R,P;
+float horner_intrinsic(float X,float *coef, long size){
+    float *R,P;
     int i;
     __m256 *ymm0,X256,Y;
 
     ymm0 = (__m256*)coef;
 
-    X256 = _mm256_set1_ps(X*X*X*X);
+    X256 = _mm256_set1_ps(X*X*X*X*X*X*X*X);
 
     Y = _mm256_set1_ps(0.0);
 
-    for(i=0;i<size/4-1;i++){
+    for(i=0;i<size/8-1;i++){
         Y = _mm256_add_ps(Y,ymm0[i]);
         Y = _mm256_mul_ps(Y,X256);
     }
 
     Y = _mm256_add_ps(Y,ymm0[i]);
 
-    R = (double *)(&Y);
+    R = (float *)(&Y);
 
-    P = R[3]*X;
-    P += R[2]*X*X;
-    P += R[1]*X*X*X;
-    P += R[0]*X*X*X*X;
+    P =  R[7] * X;
+    P += R[6] * (X * X);
+    P += R[5] * (X * X * X);
+    P += R[4] * (X * X * X * X);
+    P += R[3] * (X * X * X * X * X);
+    P += R[2] * (X * X * X * X * X * X);
+    P += R[1] * (X * X * X * X * X * X * X);
+    P += R[0] * (X * X * X * X * X * X * X * X);;
 
     return P;
 }
 
 int main(){
-    alignas(32) double coef[4000];
-    double X=1.1;
-    double R;
-    double R1, R2;
-    int i, num_traits = 10000000;
+    //alignas(32) float coef[4000];
+    float X=0.5f;
+    float R;
+    float R1, R2;
+    int i, num_traits = 100000;
 
     bench_t t1, t2;
 
     srand(time(NULL));
 
-    double *coeficientes;
+    float *coeficientes;
     int j;
 
-    coeficientes = (double *)_mm_malloc(100*sizeof(double), 32);
+    coeficientes = (float *)_mm_malloc(10000*sizeof(float), 32);
 
     for (j=0;j<1;j++){
-        for(i=0; i<100; i++){
-            coeficientes[i]=(double)(rand()%1000)/1000;
+        for(i=0; i<10000; i++){
+            coeficientes[i]=(float)(rand()%1000)/1000;
             if(i<10){
                 cout<< coeficientes[i] <<endl;
             }
         }
-        R = horner(X,coeficientes,1000);
+        R = horner(X,coeficientes,10000);
         cout<< R <<endl;
-        R = horner_intrinsic(X,coeficientes,1000);
+        R = horner_intrinsic(X,coeficientes,10000);
         cout << R <<endl;
     }
 
@@ -91,13 +95,13 @@ int main(){
     auto t1_normal = chrono::steady_clock::now();
     //auto t1_normal = chrono::system_clock::now();
     for(int j = 0; j < num_traits; j++){
-        R1 = horner(X,coeficientes,100);
+        R1 = horner(X,coeficientes,10000);
     }
 
     //auto t2_normal = chrono::high_resolution_clock::now();
     auto t2_normal = chrono::steady_clock::now();
     //auto t2_normal = chrono::system_clock::now();
-    chrono::duration<double, milli> tiempo_normal = t2_normal - t1_normal;
+    chrono::duration<float, milli> tiempo_normal = t2_normal - t1_normal;
 
     cout << "--- METODO HORNER ---" << endl;
     cout << "Resultado final: " << R1 << endl;
@@ -110,13 +114,13 @@ int main(){
     auto t1_intrin = chrono::steady_clock::now();
     //auto t1_intrin = chrono::system_clock::now();
     for(int j = 0; j < num_traits; j++){
-        R2 = horner_intrinsic(X,coeficientes,100);
+        R2 = horner_intrinsic(X,coeficientes,10000);
     }
 
     //auto t2_intrin = chrono::high_resolution_clock::now();
     auto t2_intrin = chrono::steady_clock::now();
     //auto t2_intrin = chrono::system_clock::now();
-    chrono::duration<double, milli> tiempo_intrinsic = t2_intrin - t1_intrin;
+    chrono::duration<float, milli> tiempo_intrinsic = t2_intrin - t1_intrin;
 
     cout << "--- METODO HORNER CON INTRINSICS ---" << endl;
     cout << "Resultado final: " << R2 << endl;
@@ -125,5 +129,5 @@ int main(){
     cout << "--------------------------------" << endl;
 
     _mm_free(coeficientes);
-
+    return 0;
 }

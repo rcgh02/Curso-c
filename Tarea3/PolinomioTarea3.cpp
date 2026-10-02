@@ -99,7 +99,7 @@ int main(){
     //auto t2_normal = chrono::system_clock::now();
     chrono::duration<double, milli> tiempo_normal = t2_normal - t1_normal;
 
-    cout << "--- METODO HORNER NORMAL ---" << endl;
+    cout << "--- METODO HORNER ---" << endl;
     cout << "Resultado final: " << R1 << endl;
     cout << "Tiempo total (" << num_traits << " ejecuciones): " << tiempo_normal.count() << " ms" << endl;
     cout << "Tiempo promedio por iteracion: " << (tiempo_normal.count() * 1000) / num_traits << " us (microsegundos)" << endl;
@@ -118,7 +118,7 @@ int main(){
     //auto t2_intrin = chrono::system_clock::now();
     chrono::duration<double, milli> tiempo_intrinsic = t2_intrin - t1_intrin;
 
-    cout << "--- METODO HORNER (INTRINSICS) ---" << endl;
+    cout << "--- METODO HORNER CON INTRINSICS ---" << endl;
     cout << "Resultado final: " << R2 << endl;
     cout << "Tiempo total (" << num_traits << " ejecuciones): " << tiempo_intrinsic.count() << " ms" << endl;
     cout << "Tiempo promedio por iteracion: " << (tiempo_intrinsic.count() * 1000) / num_traits << " us (microsegundos)" << endl;

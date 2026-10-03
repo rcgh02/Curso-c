@@ -47,6 +47,6 @@ Tiempo del reloj de pared desde el reloj en tiempo real de todo el sistema
 * chrono::system_clock
 
 
-Ejecutando archivo PolinomioTarea3.cpp
+Ejecutando archivo PolinomioTarea3.cpp, se utilizó "steady_clock"
 
 ![screenshot](imagenes/image-1.png)

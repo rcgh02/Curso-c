@@ -100,15 +100,15 @@ int main(){
         cout << R <<endl;
     }
 
-    //auto t1_normal = chrono::high_resolution_clock::now();
     auto t1_normal = chrono::steady_clock::now();
+    //auto t1_normal = chrono::high_resolution_clock::now();
     //auto t1_normal = chrono::system_clock::now();
     for(int j = 0; j < num_traits; j++){
         R1 = horner(X,coeficientes,10000);
     }
-
-    //auto t2_normal = chrono::high_resolution_clock::now();
+    
     auto t2_normal = chrono::steady_clock::now();
+    //auto t2_normal = chrono::high_resolution_clock::now();
     //auto t2_normal = chrono::system_clock::now();
     chrono::duration<float, milli> tiempo_normal = t2_normal - t1_normal;
 
@@ -118,17 +118,17 @@ int main(){
     cout << "Tiempo promedio por iteracion: " << (tiempo_normal.count() * 1000) / num_traits << " us (microsegundos)" << endl;
     cout << "--------------------------------\n" << endl;
 
-    
+    auto t1_intrin = chrono::steady_clock::now();    
     //auto t1_intrin = chrono::high_resolution_clock::now();
-    auto t1_intrin = chrono::steady_clock::now();
     //auto t1_intrin = chrono::system_clock::now();
     for(int j = 0; j < num_traits; j++){
         R2 = horner_intrinsic(X,coeficientes,10000);
     }
 
     //auto t2_intrin = chrono::high_resolution_clock::now();
-    auto t2_intrin = chrono::steady_clock::now();
     //auto t2_intrin = chrono::system_clock::now();
+    auto t2_intrin = chrono::steady_clock::now();
+
     chrono::duration<float, milli> tiempo_intrinsic = t2_intrin - t1_intrin;
 
     cout << "--- METODO HORNER CON INTRINSICS ---" << endl;

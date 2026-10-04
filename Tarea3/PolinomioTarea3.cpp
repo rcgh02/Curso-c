@@ -31,24 +31,33 @@ float horner(float X, float *coef, long size){
 }
 
 float horner_intrinsic(float X,float *coef, long size){
-    float *R,P;
+    float P;
     int i;
     __m256 *ymm0,X256,Y;
 
+	float x2 = X * X;
+	float x4 = x2 * x2;
+	float x8 = x4 * x4;
+
     ymm0 = (__m256*)coef;
 
-    X256 = _mm256_set1_ps(X*X*X*X*X*X*X*X);
+    X256 = _mm256_set1_ps(x8);
 
-    Y = _mm256_set1_ps(0.0);
+    Y = _mm256_set1_ps(0.0f);
 
     for(i=0;i<size/8-1;i++){
+        __m256 coef_vec = _mm256_loadu_ps(&coef[i * 8]);
         Y = _mm256_add_ps(Y,ymm0[i]);
         Y = _mm256_mul_ps(Y,X256);
     }
+	__m256 coef_vec = _mm256_loadu_ps(&coef[i * 8]);
+    Y = _mm256_add_ps(Y, coef_vec);
+    //Y = _mm256_add_ps(Y,ymm0[i]);
 
-    Y = _mm256_add_ps(Y,ymm0[i]);
-
-    R = (float *)(&Y);
+    alignas(32) float R[8];
+	_mm256_store_ps(R, Y);
+    
+    //R = (float *)(&Y);
 
     P =  R[7] * X;
     P += R[6] * (X * X);

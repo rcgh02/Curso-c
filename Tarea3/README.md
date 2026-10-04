@@ -29,9 +29,7 @@ Se utilizan las funciones
 
 Marcas de tiempo en c++
 
-Biblioteca
-
-chrono
+Biblioteca "chrono"
 
 Proporciona el intervalo de tiempo más corto disponible para mediciones de alta precisión.
 
@@ -53,5 +51,6 @@ Ejecutando archivo PolinomioTarea3.cpp, se utilizó "steady_clock"
 Segunda compilación
 
 ![screenshot](imagenes/image2.png)
+
 
 ### Hugo Miranda Cano

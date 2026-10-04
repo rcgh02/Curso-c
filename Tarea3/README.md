@@ -2,9 +2,10 @@
 
 ## Método de horner
 
-## Método de horner utilizando el método tradicional
+## Método de horner utilizando el método tradicional y utilizando funciones y tipos de datos de la guia de intel intrinsec
 
-## Método de horner utilizando funciones y tipos de datos  intrinsec
+https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#
+
 
 Utilizando tipo de datos:
 
@@ -54,3 +55,6 @@ Ejecutando archivo PolinomioTarea3.cpp, se utilizó "steady_clock"
 Segunda compilación
 
 ![screenshot](imagenes/image2.png)
+
+
+### Hugo Miranda Cano

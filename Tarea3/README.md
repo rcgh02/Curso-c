@@ -1,7 +1,5 @@
 # Tarea 3
 
-## Método de horner
-
 ## Método de horner utilizando el método tradicional y utilizando funciones y tipos de datos de la guia de intel intrinsec
 
 https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#

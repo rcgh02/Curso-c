@@ -54,5 +54,4 @@ Segunda compilación
 
 ![screenshot](imagenes/image2.png)
 
-
 ### Hugo Miranda Cano

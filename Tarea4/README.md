@@ -3,8 +3,8 @@
 
 
 
-![screenshot](imagenes/image.png)
+![screenshot](imagen/image.png)
 
 
 
-![screenshot](imagenes/image2.png)
+![screenshot](imagen/image2.png)

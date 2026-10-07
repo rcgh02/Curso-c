@@ -63,7 +63,7 @@ void hash_insertar(HashTable *ht, const char *clave, int valor) {
     printf("Insertado con éxito: %s con ID: %d en el indice: %u\n", clave, valor, indice);
 }
 
-// Buscar un elemento
+// Buscar un elemento con su indice
 HashNode* hash_buscar(HashTable *ht, const char *clave, int valor_buscado, int *encontrado) {
     unsigned int indice = funcion_hash(clave);
     //unsigned long indice = funcionHashDJB2(clave);
@@ -80,6 +80,45 @@ HashNode* hash_buscar(HashTable *ht, const char *clave, int valor_buscado, int *
 
     *encontrado = 0;
     return NULL;
+}
+
+// Buscar solo por nombre
+
+HashNode* hash_buscar_nombre(HashTable *ht, const char *clave, int *encontrado) {
+    unsigned int indice = funcion_hash(clave);
+    HashNode *actual = ht->tabla[indice];
+
+    while (actual != NULL) {
+        // Buscamos SOLO por nombre (clave)
+        if (strcmp(actual->clave, clave) == 0) {
+            *encontrado = 1;
+            return actual; // Devuelve el primer nodo que coincida
+        }
+        actual = actual->siguiente;
+    }
+
+    *encontrado = 0;
+    return NULL;
+}
+
+void hash_buscar_todos(HashTable *ht, const char *clave) {
+    unsigned int indice = funcion_hash(clave);
+    HashNode *actual = ht->tabla[indice];
+    int conteo = 0;
+
+    printf("Buscando todos los registros para el nombre '%s' con el indice %u:\n", clave, indice);
+    
+    while (actual != NULL) {
+        if (strcmp(actual->clave, clave) == 0) {
+            printf("  -> Se encontró: %s con ID: %d\n", actual->clave, actual->valor);
+            conteo++;
+        }
+        actual = actual->siguiente;
+    }
+
+    if (conteo == 0) {
+        printf("  No se encontraron registros con el nombre '%s'.\n", clave);
+    }
 }
 
 // Borrar una clave específica de la tabla
@@ -140,15 +179,16 @@ int main(){
 HashTable HT;
 hash_inicializar(&HT);
 
-printf("---------------------------------------------\n");
+printf("--------------------------------------------------------------------\n");
 
 //hash_insertar(HashTable *ht, const char *clave, int valor)
 hash_insertar(&HT,"Ernesto",10);
 hash_insertar(&HT,"Braulio",15);
 hash_insertar(&HT,"Catalina",56);
-hash_insertar(&HT,"Alondra",28);
+hash_insertar(&HT,"Alondra",18);
 hash_insertar(&HT,"Freddy",59);
 hash_insertar(&HT,"Ernesto",18);
+hash_insertar(&HT,"Fer",18);
 
 //hash_buscar(HashTable *ht, const char *clave, int *encontrado)
 
@@ -156,13 +196,30 @@ int encontrado;
 int id_buscado = 180;
 HashNode* resultado =  hash_buscar(&HT, "Ernesto", id_buscado, &encontrado);
 
-printf("---------------------------------------------\n");
+printf("--------------------------------------------------------------------\n");
 if (encontrado && resultado != NULL)
 {
     printf("Encontrado el Nombre : %s Con ID: %d\n", resultado->clave, resultado->valor);
 }else{
     printf("No se encontro el registro con ID %d\n", id_buscado);
 }
+
+
+printf("--------------------------------------------------------------------\n");
+// Buscamos todas las instancias de Ernesto (debería mostrar el ID 18 y el ID 10)
+hash_buscar_todos(&HT, "Ernesto");
+
+printf("--------------------------------------------------------------------\n");
+// Buscamos todas las instancias de Fernanda 
+hash_buscar_todos(&HT, "Fernanda");
+
+printf("--------------------------------------------------------------------\n");
+// Buscamos todas las instancias de catalina
+hash_buscar_todos(&HT, "Catalina");
+
+printf("--------------------------------------------------------------------\n");
+// Liberar memoria antes de salir (¡Súper importante!)
+hash_destruir(&HT);
 
 //printf("\n %d %d \n",hash_buscar(&HT,"Ernesto",&encontrado),hash_buscar(&HT,"Ernesto",&encontrado));
 

@@ -180,6 +180,7 @@ HashTable HT;
 hash_inicializar(&HT);
 
 printf("--------------------------------------------------------------------\n");
+printf("Insercciones\n");
 
 //hash_insertar(HashTable *ht, const char *clave, int valor)
 hash_insertar(&HT,"Ernesto",10);
@@ -188,15 +189,16 @@ hash_insertar(&HT,"Catalina",56);
 hash_insertar(&HT,"Alondra",18);
 hash_insertar(&HT,"Freddy",59);
 hash_insertar(&HT,"Ernesto",18);
-hash_insertar(&HT,"Fer",18);
+hash_insertar(&HT,"Fer",17);
 
 //hash_buscar(HashTable *ht, const char *clave, int *encontrado)
 
 int encontrado;
-int id_buscado = 180;
+int id_buscado = 18;
 HashNode* resultado =  hash_buscar(&HT, "Ernesto", id_buscado, &encontrado);
 
 printf("--------------------------------------------------------------------\n");
+printf("Busqueda individual\n");
 if (encontrado && resultado != NULL)
 {
     printf("Encontrado el Nombre : %s Con ID: %d\n", resultado->clave, resultado->valor);
@@ -204,17 +206,19 @@ if (encontrado && resultado != NULL)
     printf("No se encontro el registro con ID %d\n", id_buscado);
 }
 
-
 printf("--------------------------------------------------------------------\n");
 // Buscamos todas las instancias de Ernesto (debería mostrar el ID 18 y el ID 10)
+printf("Busqueda de todas las instancias con el nombre de Ernesto\n");
 hash_buscar_todos(&HT, "Ernesto");
 
 printf("--------------------------------------------------------------------\n");
 // Buscamos todas las instancias de Fernanda 
+printf("Busqueda de todas las instancias con el nombre de Fernanda\n");
 hash_buscar_todos(&HT, "Fernanda");
 
 printf("--------------------------------------------------------------------\n");
 // Buscamos todas las instancias de catalina
+printf("Busqueda de todas las instancias con el nombre de Catalina\n");
 hash_buscar_todos(&HT, "Catalina");
 
 printf("--------------------------------------------------------------------\n");

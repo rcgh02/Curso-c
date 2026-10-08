@@ -15,11 +15,17 @@ TablaHashTarea4.c
 
 ![screenshot](imagen/image1_1.png)
 
+Búsqueda individual
+
 ![screenshot](imagen/image3.png)
 
 ![screenshot](imagen/image.png)
 
 ![screenshot](imagen/image2.png)
+
+Borrando registro "Fer"
+
+![screenshot](imagen/image4.png)
 
 
 Bibliografía

@@ -197,14 +197,29 @@ int encontrado;
 int id_buscado = 18;
 HashNode* resultado =  hash_buscar(&HT, "Ernesto", id_buscado, &encontrado);
 
+
 printf("--------------------------------------------------------------------\n");
-printf("Busqueda individual\n");
+printf("Busqueda individual por nombre y id\n");
 if (encontrado && resultado != NULL)
 {
     printf("Encontrado el Nombre : %s Con ID: %d\n", resultado->clave, resultado->valor);
 }else{
     printf("No se encontro el registro con ID %d\n", id_buscado);
 }
+
+
+HashNode* resultado2 =  hash_buscar_nombre(&HT, "Fer", &encontrado);
+
+printf("--------------------------------------------------------------------\n");
+printf("Busqueda individual por nombre\n");
+if (encontrado && resultado != NULL)
+{
+    printf("Encontrado el Nombre : %s Con ID: %d\n", resultado->clave, resultado->valor);
+}else{
+    printf("No se encontro el registro con ID %d\n", id_buscado);
+}
+
+
 
 printf("--------------------------------------------------------------------\n");
 // Buscamos todas las instancias de Ernesto (debería mostrar el ID 18 y el ID 10)

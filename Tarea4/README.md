@@ -8,6 +8,8 @@ Podemos ingresar un nombre con un id,  ahora, si se ingresa otro elemento con el
 Funciones hash funcion_hash y funcionHashDJB2 esta última se ingreso para realizar pruebas.
 El código actual funciona con funcion_hash.
 
+Esta función hash realiza un proceso de transformar una clave en un valor entero reducido mediante una funcion determinista. Ese valor indica la posicion donde almacenar o buscar el elemento en una tabla.
+
 Capturas de la compilacion y ejecucion del codigo.
 TablaHashTarea4.c
 
@@ -19,5 +21,9 @@ TablaHashTarea4.c
 
 ![screenshot](imagen/image2.png)
 
+
+Bibliografía
+
+- https://www.tutorialesprogramacionya.com/estructurasdedatos/tablahash/tema1.html
 
 ## Hugo Miranda Cano

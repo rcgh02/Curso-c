@@ -195,6 +195,7 @@ hash_insertar(&HT,"Fer",17);
 
 int encontrado;
 int id_buscado = 18;
+int id_buscado2 = 17;
 HashNode* resultado =  hash_buscar(&HT, "Ernesto", id_buscado, &encontrado);
 
 
@@ -236,9 +237,28 @@ printf("--------------------------------------------------------------------\n")
 printf("Busqueda de todas las instancias con el nombre de Catalina\n");
 hash_buscar_todos(&HT, "Catalina");
 
+
+printf("--------------------------------------------------------------------\n");
+// Buscamos todas las instancias de catalina
+printf("Busqueda de todas las instancias con el nombre de Fer\n");
+hash_buscar_todos(&HT, "Fer");
+
+
+printf("--------------------------------------------------------------------\n");
+printf("Borrando instancia con el nombre de Fer\n");
+hash_borrar(&HT,"Fer");
+
+
+printf("--------------------------------------------------------------------\n");
+// Buscamos todas las instancias de catalina
+printf("Busqueda de todas las instancias con el nombre de Fer\n");
+hash_buscar_todos(&HT, "Fer");
+
+
 printf("--------------------------------------------------------------------\n");
 // Liberar memoria antes de salir (¡Súper importante!)
 hash_destruir(&HT);
+
 
 //printf("\n %d %d \n",hash_buscar(&HT,"Ernesto",&encontrado),hash_buscar(&HT,"Ernesto",&encontrado));
 

@@ -193,8 +193,8 @@ int main()
         // 2. Redimensionamos a 1000 para descartar a los 1000 peores (los de abajo)
         poblacion.resize(tamPoblacion);
 
-        std::cout << "Generacion " << genActual << " | Mejor Fitness: " << poblacion[0].fitness
-                  << " | x: " << poblacion[0].x << " | y: " << poblacion[0].y << "\n";
+        cout << "Generacion " << genActual << " | Mejor Fitness: " << poblacion[0].fitness
+             << " | x: " << poblacion[0].x << " | y: " << poblacion[0].y << "\n";
     }
     return 0;
 }

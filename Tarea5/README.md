@@ -24,6 +24,7 @@ Los sigueintes contenedores y plantillas.
 
  * std::uniform_real_distribution: Produce valores aleatorios de punto flotante x, distribuidos  uniformemente en el intervalo [a,b].
 
+ * std::sort: Ordena los elementos en un rango [first, last] 
 
 
 

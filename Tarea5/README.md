@@ -10,6 +10,21 @@ Secuencia del algoritmo
 
 1. Definir estructura del individuo.(Definiremos el contenedor de vector)
 
+Se utilizó de 
+
+https://en.cppreference.com/cpp/utility/pair
+
+std::vector: Es un contenedor de secuecia que encapsula arreglos de tamaño dinámico.
+
+std::pair:  Plantilla que permite almacenar dos objetos heterogeneos como una única unidad.
+
+std::uniform_int_distribution: Genera enteros aleatorios distribuidos uniformemente en el intervalo cerrado [a,b]
+
+std::uniform_real_distribution: Produce valores aleatorios de punto flotante x, distribuidos  uniformemente en el intervalo [a,b].
+
+
+
+
 2. Generamos una población. Utilizaremos una distribucion uniforme entre [0,1] para poder crear los cromosamos iniciales de forma aleatoria.
 
 3. Cruza de genes

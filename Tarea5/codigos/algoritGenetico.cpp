@@ -185,7 +185,7 @@ int main()
             hijos.push_back(hijo1);
             hijos.push_back(hijo2);
         }
-        // Unimos a los 50 padres + 50 hijos (ahora tenemos 100 individuos)
+        // Unimos a los 500 padres + 500 hijos (ahora tenemos 100 individuos)
         poblacion.insert(poblacion.end(), hijos.begin(), hijos.end());
         // 1. Ordenamos de menor a mayor fitness (porque buscamos minimizar)
         sort(poblacion.begin(), poblacion.end(), [](const Individuo &a, const Individuo &b)

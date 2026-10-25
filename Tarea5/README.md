@@ -27,10 +27,13 @@ La mutacion sirve para evitar que la función se quede atrapada en soluciones po
 6. Ordenamos la poblacion para encontrar los valores que minimicen la función.
 
 
-Utilizando un tamaño de población de: 1000
-Una probabilidad de cruza: 0.9
-Una probabilidad de mutación de: 0.01
-Y un numero de generaciones de: 10
+* Utilizando un tamaño de población de: 1000
+
+* Una probabilidad de cruza: 0.9
+
+* Una probabilidad de mutación de: 0.01
+
+* Y un numero de generaciones de: 10
 
 
 ![screenshot](imagenes/ejec2.jpg)

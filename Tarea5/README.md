@@ -8,7 +8,7 @@ En un dominio acotado [-5.12,5.12] \in R
 
 Secuencia del algoritmo 
 
-1. Definir estructura del individuo.(Definiremos contenedores vector)
+1. Definir estructura del individuo.(Definiremos el contenedor de vector)
 
 2. Generamos una población. Utilizaremos una distribucion uniforme entre [0,1] para poder crear los cromosamos iniciales de forma aleatoria.
 
@@ -20,7 +20,7 @@ Como resultado tendremos de dos cromosomas padres dos cromosomas hijos cruzados.
 4. Mutacíon de genes
 La mutacion sirve para evitar que la función se quede atrapada en soluciones poco eficientes.
 
-Para esto introduciremos cambios aleatorios, para esto definiremos una probabilidad muy baja de mutacion es decir 1% (0.01), si el valor aleatorio generado es decir "disReal" es menor o igual a esta probabilidad de mutación, se invertirá el bit, es decir si es 0 pasa a 1, si es 1 pasa a 0.
+    Para esto introduciremos cambios aleatorios, para esto definiremos una probabilidad muy baja de mutacion es decir 1% (0.01), si el valor aleatorio generado es decir "disReal" es menor o igual a esta probabilidad de mutación, se invertirá el bit, es decir si es 0 pasa a 1, si es 1 pasa a 0.
 
 5. Evaluaremos la función f(x,y), para toda la población. Para esto decodificaremos los bit en numeros reales.
 
@@ -33,7 +33,7 @@ Una probabilidad de mutación de: 0.01
 Y un numero de generaciones de: 10
 
 
-
+![screenshot](imagenes/ejec2.jpg)
 
 
 Bibliografía

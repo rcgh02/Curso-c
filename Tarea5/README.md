@@ -39,8 +39,16 @@ La mutacion sirve para evitar que la función se quede atrapada en soluciones po
 ![screenshot](imagenes/ejec2.jpg)
 
 
+Nota se ejecutó de la sigueinte manera al ingresar esta estructura auto [hijo1,hijo2], que permite desempaquetar valores como el que se mencionó
+
+auto [hijo1, hijo2] = cruzar(padre1, padre2, probCruza, gen);
+
+Por lo que se necesita la bandera 
+
+$ g++ -std=c++17 algoritGenetico.cpp -o algoritGenetico.o
+
 Bibliografía
 
-- https://www.tutorialesprogramacionya.com/estructurasdedatos/tablahash/tema1.html
+- https://www.geeksforgeeks.org/dsa/genetic-algorithms/
 
 ## Hugo Miranda Cano

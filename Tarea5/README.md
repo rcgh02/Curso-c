@@ -52,7 +52,21 @@ La mutacion sirve para evitar que la función se quede atrapada en soluciones po
 * Número de generaciones: 10
 
 
-![screenshot](imagenes/ejec2.jpg)
+![screenshot](imagenes/1.jpg)
+
+Experimento 2
+
+* Utilizando una población de: 1000 individuos
+
+* Una probabilidad de cruza: 0.9 ó 90 %
+
+* Una probabilidad de mutación de: 0.01 ó 1%
+
+* Número de generaciones: 15
+
+![screenshot](imagenes/2.jpg)
+
+
 
 
 Nota: se ejecutó de la sigueinte manera, al ingresar esta estructura auto [hijo1,hijo2], que permite desempaquetar valores
@@ -66,6 +80,9 @@ $ g++ algoritGenetico.cpp -o algoritGenetico.o
 Por lo que se necesita la bandera, utilizando el standar C++17
 
 $ g++ -std=c++17 algoritGenetico.cpp -o algoritGenetico.o
+
+Nota2: Se comentó el codigo algoritGenetico.cpp
+
 
 Bibliografía
 

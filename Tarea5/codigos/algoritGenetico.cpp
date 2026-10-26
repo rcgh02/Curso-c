@@ -6,17 +6,16 @@
 
 #define PI 3.14159
 
-#define BITS_VAR 32
-#define BITS_TOTAL (BITS_VAR * 2)
+#define BITS_VARIABLE 32
+#define BITS_TOTAL (BITS_VARIABLE * 2)
 #define A_RANGO -5.12
 #define B_RANGO 5.12
 
 using namespace std;
 
-// INDIVIDUO
+// Definimos a el individuo
 typedef struct
 {
-    /* data */
     vector<int> cromosomas;
     // int cromosoma[BITS_TOTAL];
     double x;
@@ -32,7 +31,6 @@ double evaluarFuncion(double x, double y)
 double binarioADecimal(const vector<int> &bits, int inicio, int fin)
 {
     unsigned long long valorDecimal = 0;
-
     // binario a enetero utilizando desplazamioento de bits
     // a<<b = a*2^b
     // a>>b = floor(a/2^b)
@@ -42,13 +40,13 @@ double binarioADecimal(const vector<int> &bits, int inicio, int fin)
     }
 
     // evitando desbordamiento
-    unsigned long long maxVal = (1ULL << BITS_VAR) - 1;
+    unsigned long long maxVal = (1ULL << BITS_VARIABLE) - 1;
 
     // FORMULA
     return A_RANGO + ((double)valorDecimal / (double)maxVal) * (B_RANGO - A_RANGO);
 }
 
-// generando poblacion inicial
+// generamos poblacion inicial
 vector<Individuo> generarPoblacion(int tamPoblacion, mt19937 &gen)
 {
     vector<Individuo> poblacion(tamPoblacion);
@@ -64,12 +62,12 @@ vector<Individuo> generarPoblacion(int tamPoblacion, mt19937 &gen)
         }
 
         // Decodificar X (0 31)
-        poblacion[i].x = binarioADecimal(poblacion[i].cromosomas, 0, BITS_VAR - 1);
+        poblacion[i].x = binarioADecimal(poblacion[i].cromosomas, 0, BITS_VARIABLE - 1);
 
         // Decodificar Y (32 63)
-        poblacion[i].y = binarioADecimal(poblacion[i].cromosomas, BITS_VAR, BITS_TOTAL - 1);
+        poblacion[i].y = binarioADecimal(poblacion[i].cromosomas, BITS_VARIABLE, BITS_TOTAL - 1);
 
-        // EVALUAR FUNCION
+        // Evaluamos funcion
         poblacion[i].fitness = evaluarFuncion(poblacion[i].x, poblacion[i].y);
     }
     return poblacion;
@@ -86,11 +84,12 @@ vector<Individuo> generarPoblacion(int tamPoblacion, mt19937 &gen)
 
 // funcion cruzar dos padres y generar dos hijo
 // Generamos al azar un valor de 0 a 63 que será el punto de
-// corte para poder realizar la cruza de sus bits, ejemplo si es 38
+// corte para poder realizar la cruza de sus bits, ejemplo si es el valor
+// que se tomó aleatoriamente es 38 (indice)
 // al hijo 1 se le pasaran todos los bits del 38 a 63 es decir la cola
-// de bits, al hijo 2 se le pasarán los cromosamos del padre 1
-// la probabilidad de cruza es de 0.9
-// y regresamos 2 hijos
+// de bits, al hijo 2 se le pasarán los cromosamos del padre 1.
+
+// La probabilidad de cruza es de 0.9, como resultado obtenemos 2 hijos
 pair<Individuo, Individuo> cruzar(
     const Individuo &padre1,
     const Individuo &padre2,
@@ -148,14 +147,13 @@ int main()
     random_device rd;
     mt19937 gen(rd());
 
-    // 1.. Generamos a la poblacion inicial
+    // 1 Generamos a la poblacion inicial
     vector<Individuo> poblacion = generarPoblacion(tamPoblacion, gen);
 
-    // ciclo generaqciones
+    // ciclo generaciones
     for (int genActual = 1; genActual <= numGeneraciones; ++genActual)
     {
         vector<Individuo> hijos;
-
         // generando hijos mediante cruza y mutacion
         while (hijos.size() < (unsigned int)tamPoblacion)
         {
@@ -173,24 +171,24 @@ int main()
             mutar(hijo2, probMutacion, gen);
 
             // paso 5
-            hijo1.x = binarioADecimal(hijo1.cromosomas, 0, BITS_VAR - 1);
-            hijo1.y = binarioADecimal(hijo1.cromosomas, BITS_VAR, BITS_TOTAL - 1);
+            hijo1.x = binarioADecimal(hijo1.cromosomas, 0, BITS_VARIABLE - 1);
+            hijo1.y = binarioADecimal(hijo1.cromosomas, BITS_VARIABLE, BITS_TOTAL - 1);
             hijo1.fitness = evaluarFuncion(hijo1.x, hijo1.y);
 
-            hijo2.x = binarioADecimal(hijo2.cromosomas, 0, BITS_VAR - 1);
-            hijo2.y = binarioADecimal(hijo2.cromosomas, BITS_VAR, BITS_TOTAL - 1);
+            hijo2.x = binarioADecimal(hijo2.cromosomas, 0, BITS_VARIABLE - 1);
+            hijo2.y = binarioADecimal(hijo2.cromosomas, BITS_VARIABLE, BITS_TOTAL - 1);
             hijo2.fitness = evaluarFuncion(hijo2.x, hijo2.y);
 
-            // meter en el cajon hecho linea 157 al final de la fila
+            // Ingresar en un cajon (linea 156) al final de la fila
             hijos.push_back(hijo1);
             hijos.push_back(hijo2);
         }
-        // Unimos a los 500 padres + 500 hijos (ahora tenemos 100 individuos)
+        // Union de individuos
         poblacion.insert(poblacion.end(), hijos.begin(), hijos.end());
-        // 1. Ordenamos de menor a mayor fitness (porque buscamos minimizar)
+        // Ordenamos de menor a mayor fitness (porque buscamos minimizar)
         sort(poblacion.begin(), poblacion.end(), [](const Individuo &a, const Individuo &b)
              { return a.fitness < b.fitness; });
-        // 2. Redimensionamos a 1000 para descartar a los 1000 peores (los de abajo)
+        // Redimensionamos a 1000 para descartar a los 1000 peores (los de abajo)
         poblacion.resize(tamPoblacion);
 
         cout << "Generacion " << genActual << " | Mejor Fitness: " << poblacion[0].fitness

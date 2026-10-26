@@ -13,6 +13,7 @@
 
 using namespace std;
 
+// Idea cruzar -> mutar -> decodificar -> evaluar
 // Definimos a el individuo
 typedef struct
 {
@@ -143,7 +144,7 @@ int main()
     double probCruza = 0.9;
     double probMutacion = 0.01;
     int numGeneraciones = 10;
-    // cruzar -> mutar -> decodificar -> evaluar
+
     random_device rd;
     mt19937 gen(rd());
 

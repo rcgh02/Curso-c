@@ -120,16 +120,17 @@ Código de Huffman
 
 Se utilizó c++ para su implementación.
 
-Requerimientos 
+# Requerimientos 
 
 C++17
 
-Compilación 
+# Compilación 
 
 ```bash
 $ g++ huffman.c -o huffman.o
 ```
-Ejecución
+
+# Ejecución
 
 ```bash
 $ ./huffman.o
@@ -156,6 +157,6 @@ Al codificar en un archivo binario se puede ver que hubo una compresion der arch
 
 
 
-Bibliografía
+# Bibliografía
 
 https://www.geeksforgeeks.org/dsa/huffman-coding-greedy-algo-3/

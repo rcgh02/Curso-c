@@ -120,6 +120,21 @@ Código de Huffman
 
 Se utilizó c++ para su implementación.
 
+Requerimientos 
+
+C++17
+
+Compilación 
+
+```bash
+$ g++ huffman.c -o huffman.o
+```
+Ejecución
+
+```bash
+$ ./huffman.o
+```
+
 ![alt text](imagenes/Pantallahuffman.png)
 
 Al elegir 1

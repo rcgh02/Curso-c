@@ -27,12 +27,12 @@ El nodo restante es la raíz y el árbol está completo.
 Ejemplo ilustrativo
 
 Frecuencia de carcateres:
-p = 45  
-q = 16
-r = 13
-s = 11
-t = 8
-w = 6
+- p = 45  
+- q = 16
+- r = 13
+- s = 11
+- t = 8
+- w = 6
 
 
 Paso 1. Se crean los nodos hojas para los caracteres mostrados arriba
@@ -43,18 +43,17 @@ con frecuecia igual a 8 + 6 = 14
 ![screenshot](imagenes/image1.png)
 
 
-
-
 Notar que ahora el monton tiene 5 nodos, 4 nodos hojas y un nodo con 3 elementos.
 
 Aplicamos la propiedad de monton minimo quedando las nuevas frecuencias como:
 
 Frecuencia de carcateres:
-p = 45  
-q = 16
-Nuevo nodo = 14
-r = 13
-s = 11
+
+- p = 45  
+- q = 16
+- Nuevo nodo = 14
+- r = 13
+- s = 11
 
 Paso 3 Extraemos nuevamente nodos de frecuencia minima. Esto es r + s = 13 + 11 = 24 
 
@@ -62,10 +61,11 @@ Paso 3 Extraemos nuevamente nodos de frecuencia minima. Esto es r + s = 13 + 11 
 
 
 Frecuencia de carcateres:
-p = 45  
-Nuevo nodo 2 = 24
-q = 16
-Nuevo nodo 1 = 14
+
+- p = 45  
+- Nuevo nodo 2 = 24
+- q = 16
+- Nuevo nodo 1 = 14
 
 Ahora tendremos 4 nodos, 2 hojas y dos arboles con mas de un nodo.
 
@@ -76,9 +76,10 @@ Paso 4 Extraemos nuevamente dos nodos minimos. q + Nuevo nodo 1 = 16 + 14 = 30. 
 
 
 Frecuencia de carcateres:
-p = 45  
-Nuevo nodo 3 = 30
-Nuevo nodo 2 = 24
+
+- p = 45  
+- Nuevo nodo 3 = 30
+- Nuevo nodo 2 = 24
 
 Ahora tendremos 3 nodos, 1 hojas y dos arboles con mas de un nodo.
 
@@ -89,8 +90,8 @@ Paso 5 Extraemos dos nodos minimos. Nuevo nodo 3 + Nuevo nodo 2 = 30 + 24 = 54. 
 
 Frecuencia de carcateres:
 
-Nuevo nodo 4 = 54
-p = 45  
+- Nuevo nodo 4 = 54
+- p = 45  
 
 Paso 6. Extraemos los dos ultimos nodos minimos del monticulo. Y los sumamos. 54 + 45 = 99
 
@@ -108,14 +109,14 @@ hacia el nodo hijo derecho escribimos 1. Quedandonos de la sigueinte manera
 
 ![screenshot](imagenes/image6.png)
 
-Código
+Código de Huffman
 
-p = 0  
-q = 111
-r = 101
-s = 100
-t = 1101
-w = 1100
+- p = 0  
+- q = 111
+- r = 101
+- s = 100
+- t = 1101
+- w = 1100
 
 Se utilizó c++ para su implementación.
 

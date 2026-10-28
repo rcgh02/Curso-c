@@ -132,6 +132,10 @@ Al elegir 2 decodificamos
 
 ![alt text](imagenes/decodoficando.png)
 
+Al codificar en un archivo binario se puede ver que hubo una compresion der archivo.
+
+![alt text](imagenes/compresion.png)
+
 
 
 

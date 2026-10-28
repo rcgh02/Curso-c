@@ -119,14 +119,14 @@ w = 1100
 
 Se utilizó c++ para su implementación.
 
-![alt text](Pantallahuffman.png)
+![alt text](imagenes/Pantallahuffman.png)
 
 Al elegir 1
 
-![alt text](Seleccionado.png)
+![alt text](imagenes/Seleccionado.png)
 
 
-![alt text](tablaHuffman.png)
+![alt text](imagenes/tablaHuffman.png)
 
 
 

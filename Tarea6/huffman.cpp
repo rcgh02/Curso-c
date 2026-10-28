@@ -192,7 +192,7 @@ void codificarHuffman(string texto)
     }
 
     guardarTexto(texto, codigosHuffman, raiz);
-    // Liberar memoria del árbol
+
     delete raiz;
 }
 
@@ -212,7 +212,7 @@ void decodificarHuffman()
     int totalBits = 0;
     archivo.read(reinterpret_cast<char *>(&totalBits), sizeof(totalBits));
 
-    // 3. DESEMPAQUETAR BYTES: Reconstruir la secuencia de bits leída del arc
+    // Reconstruir la secuencia de bits leída del archivo
     string textoCodificado = "";
     char byteLeido;
     int bitsLeidos = 0;
@@ -246,8 +246,8 @@ void decodificarHuffman()
 
         if (!actual->izquierda && !actual->derecha)
         {
-            textoOriginal += actual->caracter; // Guardamos la letra
-            actual = raizReconstruida;         // ¡Regresamos a la raíz para la siguiente letra!
+            textoOriginal += actual->caracter;
+            actual = raizReconstruida;
         }
     }
 
@@ -264,7 +264,6 @@ void decodificarHuffman()
         cout << "No se pudo crear el archivo decodificado." << endl;
     }
 
-    // Liberar la memoria del árbol que reconstruimos
     delete raizReconstruida;
 }
 

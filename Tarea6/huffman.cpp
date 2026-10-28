@@ -103,21 +103,19 @@ void guardarTexto(string texto, unordered_map<char, string> &codigosHuffman, Min
     ofstream archivo("Archivo_codificado.bin", ios::binary);
     if (archivo.is_open())
     {
-        // 1. Guardar estructura del árbol
+        // guardando estructura del arbol
         serializarArbol(raiz, archivo);
         archivo << endl;
 
-        // 2. Guardar cuántos bits útiles tiene la cadena binaria (crucial para no leer basura al final)
         int totalBits = strCodificado.length();
         archivo.write(reinterpret_cast<const char *>(&totalBits), sizeof(totalBits));
 
-        // 3. EMPAQUETADO BINARIO: Convertir string de '0' y '1' a bits reales
         char byteActual = 0;
         int contadorBits = 0;
 
         for (char bit : strCodificado)
         {
-            // desplazamiento bits izq.
+            // desplazamiento
             byteActual <<= 1;
             if (bit == '1')
             {
@@ -125,7 +123,7 @@ void guardarTexto(string texto, unordered_map<char, string> &codigosHuffman, Min
             }
             contadorBits++;
 
-            // Cuando juntamos 8 bits (1 byte completo), lo mandamos al archivo
+            // Cuando juntamos 8 bits, lo mandamos al archivo
             if (contadorBits == 8)
             {
                 archivo.put(byteActual);
@@ -133,7 +131,7 @@ void guardarTexto(string texto, unordered_map<char, string> &codigosHuffman, Min
                 contadorBits = 0;
             }
         }
-        // Si sobraron bits al final que no completaron el byte, los rellenamos y enviamos
+        // Si sibran bits al final los rellenamos y enviamos
         if (contadorBits > 0)
         {
             byteActual <<= (8 - contadorBits);
@@ -147,14 +145,14 @@ void guardarTexto(string texto, unordered_map<char, string> &codigosHuffman, Min
 
 void codificarHuffman(string texto)
 {
-    // 1. Calcular la frecuencia de cada carácter
+    // Calcular la frecuencia de cada carácter
     unordered_map<char, int> frecuenciaMapa;
     for (char c : texto)
     {
         frecuenciaMapa[c]++;
     }
 
-    // 2. Crear una cola de prioridad para almacenar los nodos del árbol
+    // Crear una cola de prioridad para almacenar los nodos del árbol
     priority_queue<MinNode *, vector<MinNode *>, Comparar> minHeap;
 
     for (auto par : frecuenciaMapa)
@@ -162,7 +160,6 @@ void codificarHuffman(string texto)
         minHeap.push(new MinNode(par.first, par.second));
     }
 
-    // 3. Construir el árbol de Huffman combinando los nodos con menor frecuencia
     while (minHeap.size() != 1)
     {
         MinNode *izq = minHeap.top();
@@ -171,7 +168,6 @@ void codificarHuffman(string texto)
         MinNode *der = minHeap.top();
         minHeap.pop();
 
-        // El carácter '\0' indica un nodo interno (no es una hoja)
         MinNode *sumNode = new MinNode('\0', izq->frecuencia + der->frecuencia);
         sumNode->izquierda = izq;
         sumNode->derecha = der;
@@ -212,7 +208,7 @@ void decodificarHuffman()
     int totalBits = 0;
     archivo.read(reinterpret_cast<char *>(&totalBits), sizeof(totalBits));
 
-    // Reconstruir la secuencia de bits leída del archivo
+    // Reconstruir la secuencia de bits del archivo
     string textoCodificado = "";
     char byteLeido;
     int bitsLeidos = 0;
@@ -221,7 +217,7 @@ void decodificarHuffman()
     {
         for (int i = 7; i >= 0 && bitsLeidos < totalBits; i--)
         {
-            // Extraer bit por bit de izquierda a derecha usando máscaras
+            // Extraer bit por bit de izquierda a derecha
             int bit = (byteLeido >> i) & 1;
             textoCodificado += (bit == 1) ? "1" : "0";
             bitsLeidos++;
@@ -229,7 +225,7 @@ void decodificarHuffman()
     }
     archivo.close();
 
-    // 4. UTILIZAR EL ÁRBOL RECONSTRUIDO PARA DECODIFICAR
+    // utilizar arbol para decodificar
     string textoOriginal = "";
     MinNode *actual = raizReconstruida;
 
@@ -251,7 +247,7 @@ void decodificarHuffman()
         }
     }
 
-    // 5. Guardar el texto original ya limpio en el archivo decodificado
+    // Guardando archivo
     ofstream archivoEscritura("Archivo_decodificado.txt");
     if (archivoEscritura.is_open())
     {

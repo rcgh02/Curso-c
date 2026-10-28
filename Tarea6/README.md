@@ -123,10 +123,15 @@ Se utilizó c++ para su implementación.
 
 Al elegir 1
 
-![alt text](imagenes/Seleccionado.png)
+![alt text](imagenes/Seleccionando.png)
 
 
 ![alt text](imagenes/tablaHuffman.png)
+
+Al elegir 2 decodificamos
+
+![alt text](imagenes/decodoficando.png)
+
 
 
 

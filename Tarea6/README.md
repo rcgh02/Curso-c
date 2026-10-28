@@ -100,3 +100,37 @@ Paso 6. Extraemos los dos ultimos nodos minimos del monticulo. Y los sumamos. 54
 
 Ahora la frecuencia del ultimo nodo es de 99.
 
+
+Para imprimir los códigos del arbol de Huffman.
+
+Recorreremos del nodo raiz. Al movernos hacia el nodo izquierdo escribiremos 0, y si nos movemos 
+hacia el nodo hijo derecho escribimos 1. Quedandonos de la sigueinte manera
+
+![screenshot](imagenes/image6.png)
+
+Código
+
+p = 0  
+q = 111
+r = 101
+s = 100
+t = 1101
+w = 1100
+
+Se utilizó c++ para su implementación.
+
+![alt text](Pantallahuffman.png)
+
+Al elegir 1
+
+![alt text](Seleccionado.png)
+
+
+![alt text](tablaHuffman.png)
+
+
+
+
+Bibliografía
+
+https://www.geeksforgeeks.org/dsa/huffman-coding-greedy-algo-3/

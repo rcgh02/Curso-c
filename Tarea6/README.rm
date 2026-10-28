@@ -40,7 +40,9 @@ Paso 1. Se crean los nodos hojas para los caracteres mostrados arriba
 Paso 2. Extraemos los dos nodos con la frecuencia más pequena del monton. Añadimos un nuevo nodo
 con frecuecia igual a 8 + 6 = 14
 
-![screenshot](imagenes/image1.png)
+![screenshot](imagenes\image1.png)
+
+
 
 
 Notar que ahora el monton tiene 5 nodos, 4 nodos hojas y un nodo con 3 elementos.

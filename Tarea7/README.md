@@ -42,6 +42,37 @@ Por ejemplo
 ![screenshot](imagenes/imag1.png)
 
 
+### Flujo Visual de los Registros (256 bits)
+
+Suponiendo dos pares de números complejos: \((a + bi) \cdot (c + di)\) y \((e + fi) \cdot (g + hi)\):
+
+```text
+1. Carga desde RAM (_mm256_loadu_pd):
+   v_x = [   f   |   e   |   b   |   a   ]
+   v_y = [   h   |   g   |   d   |   c   ]
+
+2. Reordenamiento y Duplicación (_mm256_permute_pd):
+   v_y_real (0x00) = [   g   |   g   |   c   |   c   ]  (Duplica partes reales de Y)
+   v_y_imag (0x0F) = [   h   |   h   |   d   |   d   ]  (Duplica partes imaginarias de Y)
+   v_x_perm (0x05) = [   e   |   f   |   a   |   b   ]  (Invierte real/imag de X)
+
+3. Multiplicación Vertical Simultánea (_mm256_mul_pd):
+   prod_real = v_x * v_y_real      --> [  f*g  |  e*g  |  b*c  |  a*c  ]
+   prod_imag = v_x_perm * v_y_imag --> [  e*h  |  f*h  |  a*d  |  b*d  ]
+
+4. Resta/Suma Alternada (_mm256_addsub_pd):
+   Resta en carriles pares (0, 2) y suma en carriles impares (1, 3):
+   res = [ fg + eh | eg - fh | bc + ad | ac - bd ]
+          └─ Imag 2 ─┘└─ Real 2 ─┘└─ Imag 1 ─┘└─ Real 1 ─┘
+
+5. Escritura en RAM (_mm256_storeu_pd):
+   Guarda ambos resultados complejos de golpe en el arreglo destino z[i] y z[i+1].
+```
+
+---
+
+
+
 ## Intrisics utilizados
 
 * `_mm256_loadu_pd`: Carga 256 bits en 4 paquetes de 64 bits. NO necesita ser alineado en memoria.
@@ -80,6 +111,37 @@ $$
 $$
 
 De la misma forma se generan vectores a y b aleatorios
+
+
+### 2. Flujo Visual de Acumulación y Reducción Horizontal
+
+Suponiendo el procesamiento de los primeros 8 elementos (`i = 0` hasta `7`):
+
+```text
+1. Carga desde RAM (_mm256_loadu_ps):
+   num1 = [ a7 | a6 | a5 | a4 | a3 | a2 | a1 | a0 ]
+   num2 = [ b7 | b6 | b5 | b4 | b3 | b2 | b1 | b0 ]
+
+2. Multiplicación y Suma Fusionada (_mm256_fmadd_ps):
+   Multiplica cada columna y la acumula en num3 en un solo ciclo de reloj:
+   num3 = [ s7 | s6 | s5 | s4 | s3 | s2 | s1 | s0 ]  (donde s_k = a_k * b_k)
+
+3. Primera Suma Horizontal (_mm256_hadd_ps):
+   Suma pares adyacentes dentro de cada mitad de 128 bits:
+   num3 = [ s7+s6 | s5+s4 | s7+s6 | s5+s4 | s3+s2 | s1+s0 | s3+s2 | s1+s0 ]
+
+4. División en Registros de 128 bits (_mm256_extractf128_ps):
+   top = [ s7+s6 | s5+s4 | s7+s6 | s5+s4 ]  (Parte alta)
+   bot = [ s3+s2 | s1+s0 | s3+s2 | s1+s0 ]  (Parte baja)
+
+5. Reducción Final (_mm_add_ps + _mm_hadd_ps):
+   - Suma vertical (top + bot): combina los resultados altos y bajos.
+   - Suma horizontal final: colapsa todos los parciales en la posición 0.
+   top = [ Total | Total | Total | Total ]
+
+6. Extracción a Escalar (_mm_store_ss):
+   Guarda el primer elemento (posición 0) en la variable float 'total'.
+```
 
 
 ## Intriscs utilizados

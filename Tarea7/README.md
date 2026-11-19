@@ -1,6 +1,6 @@
 # Tarea 7 Creación de biblioteca y enlazarla en un script de python con ctypes.
 
-Se realizó la multiplicacion de números complejos y producto punto de dos vectores con intrinsics.
+Se realizó la multiplicacion de números complejos y producto punto de dos vectores con intrinsics. Se puede modificar el número de operaciones a realizar, se mostrará para 4 elementos.
 
 La multiplicación de números complejos
 
@@ -81,15 +81,6 @@ $$
 
 De la misma forma se generan vectores a y b aleatorios
 
-
-
-* `_mm256_loadu_ps`: Carga 256 bits en 8 bloques de punto flotante de precisión simple (32 bits).
-* `_mm256_fmadd_ps`: Multiplica los elementos de punto flotante de 32 bits empaquetados en `a` y `b`, y suma el elemento intermedio empaquetado en `c`.
-* `_mm256_hadd_ps`: Realiza la suma horizontal de paquetes de 32 bits adyacentes y los almacena en el destino.
-* `_mm256_extractf128_ps`: Extrae 128 bits (4 paquetes de punto flotante de 32 bits) y los almacena en una variable de 128 bits.
-* `_mm256_add_ps`: Suma elementos de punto flotante de precisión simple (32 bits) empaquetados en `a` y `b`, y almacena los resultados.
-* `_mm_store_ss`: Almacena el primer elemento de punto flotante de 32 bits en memoria (`mem_addr` no necesita estar alineado en ningún límite en particular).
-* `_mm256_setzero_ps`: Inicializa todos los bits del registro de 256 bits con ceros.
 
 ## Intriscs utilizados
 

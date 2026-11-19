@@ -136,7 +136,7 @@ Suponiendo el procesamiento de los primeros 8 elementos (`i = 0` hasta `7`):
 
 5. Reducción Final (_mm_add_ps + _mm_hadd_ps):
    - Suma vertical (top + bot): combina los resultados altos y bajos.
-   - Suma horizontal final: colapsa todos los parciales en la posición 0.
+   - Suma horizontal final: simplificación.
    top = [ Total | Total | Total | Total ]
 
 6. Extracción a Escalar (_mm_store_ss):

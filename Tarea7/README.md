@@ -123,7 +123,7 @@ Suponiendo el procesamiento de los primeros 8 elementos (`i = 0` hasta `7`):
    num2 = [ b7 | b6 | b5 | b4 | b3 | b2 | b1 | b0 ]
 
 2. Multiplicación y Suma Fusionada (_mm256_fmadd_ps):
-   Multiplica cada columna y la acumula en num3 en un solo ciclo de reloj:
+   Multiplica cada columna y la acumula en num3:
    num3 = [ s7 | s6 | s5 | s4 | s3 | s2 | s1 | s0 ]  (donde s_k = a_k * b_k)
 
 3. Primera Suma Horizontal (_mm256_hadd_ps):

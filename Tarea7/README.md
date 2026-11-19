@@ -216,7 +216,7 @@ Ejercicio con 100 elementos
 
 Multiplicación de complejos
 
-![alt text](imagenes/100_1.png.png)
+![alt text](imagenes/100_1.png)
 
 ![alt text](imagenes/100_2.png)
 

@@ -39,7 +39,7 @@ float AVX_dot_product(float *a, float *b, int tamano) {
     __m256 num1, num2, num3;
     __m128 top, bot;
     num3 = _mm256_setzero_ps();
-    int i;
+    int i = 0;
     int limite = tamano - (tamano % 8); 
 
     for (int i = 0; i < limite; i+=8) {

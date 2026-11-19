@@ -101,7 +101,7 @@ c es sumado.
 
 ## Requerimientos 
 
-C++17
+Compilado en g++ 15.2.0
 
 ## Compilación 
 
@@ -150,6 +150,18 @@ Se realiza el producto punto 2 dos vectores con 4 elmentos cada uno
 ![alt text](imagenes/producpunto.png)
 
 
+Ejercicio con 100 elementos
+
+Multiplicación de complejos
+
+![alt text](imagenes/100_1.png.png)
+
+![alt text](imagenes/100_2.png)
+
+
+Producto punto
+
+![alt text](imagenes/punt100.png)
 
 
 

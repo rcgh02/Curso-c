@@ -26,7 +26,7 @@ biblioteca.AVX_dot_product.argtypes = [
 ]
 biblioteca.AVX_dot_product.restype = ctypes.c_float
 
-tamano = 4
+tamano = 100
 
 ArrayComplejo = NumeroComplejo * tamano
 datos1 = ArrayComplejo()

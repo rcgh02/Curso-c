@@ -45,11 +45,11 @@ for i in range(tamano):
 
 biblioteca.multiplicacion_avx2_doble(datos1,datos2,datos3, tamano)
 
-print(f"=== Multiplicacion de {tamano} números complejos ===")
+print(f"*** Multiplicacion de {tamano} números complejos ***")
 for i in range(tamano):
     print(f"Elemento [{i}]: {datos3[i].real:.2f} + {datos3[i].imag:.2f}i")
 
-print("=== Producto punto de dos vectores ===\n")
+print(f"*** Producto punto de dos vectores con {tamano} entradas cada uno***\n")
 
 vec_a = np.random.uniform(1, 10, tamano).astype(np.float32)
 vec_b = np.random.uniform(1, 10, tamano).astype(np.float32)
@@ -64,4 +64,4 @@ ptr_a = vec_a.ctypes.data_as(ctypes.POINTER(ctypes.c_float))
 ptr_b = vec_b.ctypes.data_as(ctypes.POINTER(ctypes.c_float))
 
 resultado_dot = biblioteca.AVX_dot_product(ptr_a, ptr_b, tamano)
-print(f"\nResultado Producto Punto AVX2 desde ctypes: {resultado_dot:.4f}")
+print(f"\nResultado Producto Punto: {resultado_dot:.4f}")

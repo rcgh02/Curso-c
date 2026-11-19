@@ -1,4 +1,4 @@
-# Tarea 7 Creación de biblioteca y utilizarla en un script de python
+# Tarea 7 Creación de biblioteca y enlazarla en un script de python con ctypes.
 
 Se realizó la multiplicacion de números complejos y producto punto de dos vectores con intrinsics.
 
@@ -115,31 +115,48 @@ C++17
 ## Compilación 
 
 ```bash
-$ g++ huffman.c -o huffman.o
+$ g++ -O3 -shared -fPIC -msse -march=native TareaVec.cpp -o TareaVec.so
 ```
+
+Banderas
+
+* O3: Nivel máximo de optimización.
+
+* -march=native habilita todas las banderas.
+
+* -msse: Habilita el conjunto de intrucciones SSE
+
+* -shared: Genera un objeto compartido. (.so)
+
+* fPIC: Genera instrucciones que permiten cargar la bilbioteca en cualquier direccion de memoria.
+
+
+# Enlazando con python
+
+Ctypes es una biblioteca de funciones foraneas para python. Proporciona tipos de datos compatibles con C y permite llamar funciones en archivos DLL(windows) o bibliotecas compartidas como Linux (.so).
+
+Se importa ctypes
+
+biblioteca = ctypes.CDLL('./TareaVec.so')
+
+Una instancia de .CDLL representa una biblioteca compartida cargada, que exporta funciones en este caso de TareaVec.so
+
 
 ## Ejecución
 
 ```bash
-$ ./huffman.o
+$ python3 ./TareaVec.py
 ```
+Resultado de multiplicar 8 números complejos, como resultado nos da 4 numeros complejos. 
 
-![alt text](imagenes/Pantallahuffman.png)
-
-Al elegir 1
-
-![alt text](imagenes/Seleccionando.png)
+![alt text](imagenes/multiplicacioncomplex.png)
 
 
-![alt text](imagenes/tablaHuffman.png)
+Producto punto 
 
-Al elegir 2 decodificamos
+Se realiza el producto punto 2 dos vectores con 4 elmentos cada uno
 
-![alt text](imagenes/decodoficando.png)
-
-Al codificar en un archivo binario se puede ver que hubo una compresion der archivo.
-
-![alt text](imagenes/compresion.png)
+![alt text](imagenes/producpunto.png)
 
 
 
@@ -150,3 +167,8 @@ Al codificar en un archivo binario se puede ver que hubo una compresion der arch
 https://github.com/oneapi-src/oneAPI-samples/blob/master/DirectProgramming/C%2B%2B/CompilerInfrastructure/Intrinsics/src/intrin_dot_sample.cpp
 
 https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html
+
+https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
+
+
+https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html

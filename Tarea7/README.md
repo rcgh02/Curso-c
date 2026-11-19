@@ -49,15 +49,19 @@ Sea a,b $\in R^{n}$, donde a, b son vectores de longitud n. El producto punto se
 
 Sea 
 
-a = $[a_{1},a_{2},a_{3}, ... ,a_{n}]$
+$$
+\mathbf{a} = [a_1, a_2, a_3, \dots, a_n]
+$$
 
 
 
-b = $[b_{1},b_{2},b_{3}, ... ,b_{n}]$
+$$
+\mathbf{b} = [b_1, b_2, b_3, \dots, b_n]
+$$
 
-
-a * b = $$[a_{1},a_{2},a_{3}, ... ,a_{n}] * [b_{1},b_{2},b_{3}, ... ,b_{n}] = \sum_{i=1}^{n} a_{i}b_{i}$$
-
+$$
+\mathbf{a} \cdot \mathbf{b} = [a_1, a_2, a_3, \dots, a_n] \cdot [b_1, b_2, b_3, \dots, b_n] = \sum_{i=1}^{n} a_i b_i
+$$
 
 
 

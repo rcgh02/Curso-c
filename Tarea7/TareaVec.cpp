@@ -81,7 +81,6 @@ void multiplicacion_avx2_doble(const numero_complejo* x, const numero_complejo* 
 
         __m256d res = _mm256_addsub_pd(prod_real, prod_imag);
 
-        // Guardamos de forma segura con _mm256_storeu_pd
         _mm256_storeu_pd((double*)(z + i), res);
     }
 }
